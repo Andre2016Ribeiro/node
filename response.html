@@ -1,0 +1,31 @@
+<html lang="en"> 
+  <head> 
+<meta charset="UTF-8"> 
+<title>Sample Site</title> 
+
+ </head> 
+  <body> 
+    
+    <button onclick="return login()">Submit</button>
+    
+    <script>
+      function login() {
+const value = 300;
+
+let request = new XMLHttpRequest();
+
+request.addEventListener("load", () => {
+if (request.status === 200) {
+    const resp = JSON.parse(request.responseText);
+    alert(`server: ${value} * ${value} = ${resp.square} (${resp.time}ms)`);
+}
+});
+request.open('GET', `http://localhost:3000/json?value=${value}`);
+request.send();
+
+alert(`browser: ${value} * ${value} = ${value * value}`);
+      }
+
+</script> 
+  </body> 
+  </html>
